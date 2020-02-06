@@ -27,7 +27,7 @@ double RekeningTabungan::getBiayaTransaksi() const {
 // Kurangkan saldo dengan biaya transaksi
 void RekeningTabungan::simpanUang(double transaksi){
 	Rekening::simpanUang(transaksi);
-	this->tarikUang(biayaTransaksi);
+	this->setSaldo(this->getSaldo()-this->biayaTransaksi);
 }
 
 // Panggil fungsi tarikUang dari parent class
@@ -35,6 +35,10 @@ void RekeningTabungan::simpanUang(double transaksi){
 // Saldo mungkin saja menjadi negatif apabila setelah penarikan, saldo < biaya transaksi
 // Kembalikan boolean yang mengindikasikan apakah uang berhasil ditarik atau tidak
 bool RekeningTabungan::tarikUang(double transaksi){
-	return Rekening::tarikUang(transaksi);
+	if (Rekening::tarikUang(transaksi)){
+		this->setSaldo(this->getSaldo()-this->biayaTransaksi);
+		return true;
+	}
+	return false;
 }
 
