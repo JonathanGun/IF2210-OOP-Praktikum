@@ -37,25 +37,27 @@ void Complex::setImaginer(int im){
 }
 
 Complex Complex::operator + (Complex const &comp){
-	Complex c;
-	c->real += comp.real;
-	c->imaginer += comp.imaginer;
+	Complex c = *this;
+	c.real += comp.real;
+	c.imaginer += comp.imaginer;
 	return c;
 }
 
 Complex Complex::operator - (Complex const &comp){
-	Complex c;
-	c->real -= comp.real;
-	c->imaginer -= comp.imaginer;
+	Complex c = *this;
+	c.real -= comp.real;
+	c.imaginer -= comp.imaginer;
 	return c;
 }
 
 Complex Complex::operator * (Complex const &comp){
+	Complex cc;
 	int a,b,c,d;
 	a = this->real;
 	b = this->imaginer;
 	c = comp.real;
 	d = comp.imaginer;
-	this->real = a*b-c*d;
-	this->imaginer = a*d+b*c;
+	cc.real = a*c-b*d;
+	cc.imaginer = a*d+b*c;
+	return cc;
 }
