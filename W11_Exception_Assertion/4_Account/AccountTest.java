@@ -14,21 +14,19 @@ public class AccountTest {
         assert a.getNumOfTransaction() == (0);
         assert b.getNumOfTransaction() == (0);
         try {
-            a.transfer(b, 10);
-            assert a.getBalance() == (10);
-            assert b.getBalance() == (20);
+            a.transfer(b, 20);
+            assert a.getBalance() == (0);
+            assert b.getBalance() == (30);
             assert a.getNumOfTransaction() == (1);
             assert b.getNumOfTransaction() == (1);
             try {
                 a.transfer(b, 15);
                 assert false;
             } catch (InvalidAmountException e) {
-                assert a.getBalance() == (10);
-                assert b.getBalance() == (20);
+                assert a.getBalance() == (0);
+                assert b.getBalance() == (30);
                 assert a.getNumOfTransaction() == (1);
                 assert b.getNumOfTransaction() == (1);
-                a.transfer(a, 1);
-                assert a.getNumOfTransaction() == (2);
             }
         } catch (InvalidAmountException e) {
             assert false;

@@ -15,7 +15,7 @@ class RekeningTabungan extends Rekening{
 	}
 
 	public void update(){
-		this.saldo *= 1 + this.sukuBunga;
-		this.saldo -= this.hitungBiaya();
+		int biaya = this.hitungBiaya;
+		this.saldo += this.sukuBunga * this.saldo - biaya;
 	}
 }

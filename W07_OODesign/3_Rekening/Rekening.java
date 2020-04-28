@@ -14,7 +14,7 @@ abstract class Rekening{
 	public abstract void update();
 
 	public double hitungBiaya(){
-		return Math.max(10, 0.1*this.saldo);
+		return Math.min(10, 0.1 * this.saldo);
 	}
 
 	public String getNama(){

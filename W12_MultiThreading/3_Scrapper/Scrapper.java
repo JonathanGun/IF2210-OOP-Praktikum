@@ -18,17 +18,17 @@ class Scrapper {
         // instance ScrapperThread
         // Hint: baca materi praktikum
         // int lowest = Integer.MAX_VALUE;
-        return this.urlList.stream().parallel().map(x -> new Website(x).getPrice()).min().getAsInt();
-        // ScrapperThread a = new ScrapperThread(urlList);
-        // a.start();
+        // return this.urlList.stream().parallel().map(x -> new Website(x).getPrice()).min().getAsInt();
+        ScrapperThread a = new ScrapperThread(urlList);
+        a.start();
 
-        // synchronized(a){
-        //     try{
-        //         a.wait();
-        //     } catch (InterruptedException ignored){
+        synchronized(a){
+            try{
+                a.wait();
+            } catch (InterruptedException ignored){
 
-        //     }
-        // }
-        // return a.lowest;
+            }
+        }
+        return a.lowest;
     }
 }
